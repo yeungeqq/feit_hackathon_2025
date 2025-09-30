@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
     // 🔹 Dummy login check
     if (email === "teacher@test.com" && password === "1234") {
       navigate("/homepage");
-    } else if (email === "student@test.com" && password === "1234") {
+    } else if (email === "sarah.d@gmail.com" && password === "1234") {
       navigate("/student-dashboard");
     } else {
       setError("Invalid credentials. Try again.");
