@@ -28,22 +28,32 @@ const StudentDashboard: React.FC = () => {
 
 
             {/* Games Grid - 2x2 layout */}
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-6 w-full h-[calc(100vh-180px)]">
-            {games.map((game) => (
-                <div
-                key={game.title}
-                className={`${game.color} rounded-xl shadow-md flex flex-col items-center justify-center text-center p-6 h-81`}
-                >
-                <div className="text-7xl mb-4">{game.emoji}</div>
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">
-                    {game.title}
-                </h2>
-                <button className="bg-white px-5 py-2 rounded-full font-medium shadow hover:bg-gray-100">
-                    Play!
-                </button>
-                </div>
-            ))}
-            </div>
+<div className="grid grid-cols-2 md:grid-cols-2 gap-6 w-full h-[calc(100vh-180px)]">
+  {games.map((game) => (
+    <div
+      key={game.title}
+      className={`${game.color} rounded-xl shadow-md flex flex-col items-center justify-center text-center p-6 h-81`}
+    >
+      <div className="text-7xl mb-4">{game.emoji}</div>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">
+        {game.title}
+      </h2>
+
+      {game.title === "Sound Hunt" ? (
+        <Link
+          to="/sound-hunt"
+          className="bg-white px-5 py-2 rounded-full font-medium shadow hover:bg-gray-100 transition"
+        >
+          Play!
+        </Link>
+      ) : (
+        <button className="bg-white px-5 py-2 rounded-full font-medium shadow hover:bg-gray-100 transition">
+          Play!
+        </button>
+      )}
+    </div>
+  ))}
+</div>
         </div>
       </main>
     </div>
