@@ -9,6 +9,7 @@ import RANTest from "./pages/RANTest";
 import BehaviouralQuestionnaire from "./pages/BehaviouralQuestionnaire";
 import ConsentTestEmail from "./pages/ConsentTestEmail";
 import ConsentInterventionEmail from "./pages/ConsentInterventionEmail";
+import StudentDashboard from "./pages/StudentDashboard";
 
 export default function App() {
   return (
@@ -27,6 +28,8 @@ export default function App() {
         <Route path="/behavioural-questionnaire" element={<BehaviouralQuestionnaire />} />
         <Route path="/consent-test-email" element={<ConsentTestEmail />} />
         <Route path="/consent-intervention-email" element={<ConsentInterventionEmail />} />
+        <Route path="/student-dashboard" element={< StudentDashboard />} />
+
       </Routes>
     </Router>
   );
