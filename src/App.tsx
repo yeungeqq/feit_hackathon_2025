@@ -7,6 +7,8 @@ import StudentProfile from "./pages/StudentProfile";
 import HandwritingUpload from "./pages/HandwritingUpload";
 import RANTest from "./pages/RANTest";
 import BehaviouralQuestionnaire from "./pages/BehaviouralQuestionnaire";
+import ConsentTestEmail from "./pages/ConsentTestEmail";
+import ConsentInterventionEmail from "./pages/ConsentInterventionEmail";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
         <Route path="/handwriting-upload" element={<HandwritingUpload />} />
         <Route path="/ran-test" element={<RANTest />} />
         <Route path="/behavioural-questionnaire" element={<BehaviouralQuestionnaire />} />
+        <Route path="/consent-test-email" element={<ConsentTestEmail />} />
+        <Route path="/consent-intervention-email" element={<ConsentInterventionEmail />} />
       </Routes>
     </Router>
   );
