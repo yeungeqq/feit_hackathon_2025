@@ -11,6 +11,18 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
+## APIs Used
+
+This project integrates the following APIs to support audio features:
+
+1. **Speech-to-Text (STT)** – [AssemblyAI](https://www.assemblyai.com/)  
+   - Used to transcribe student audio during tests (e.g., RAN Test).  
+   - Audio is recorded via the browser (`MediaRecorder`) and then sent to the backend, which communicates with AssemblyAI for transcription and scoring.  
+
+2. **Text-to-Speech (TTS)** – `SpeechSynthesisUtterance` (Web Speech API)  
+   - A native browser API used to generate spoken sounds for exercises (e.g., reading letter sounds in Sound Hunt).  
+   - Ensures interactive feedback without needing an external TTS service.  
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
