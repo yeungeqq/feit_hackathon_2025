@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+
+type Score = { task: string; score: number };
 
 const StudentProfile: React.FC = () => {
   const { id } = useParams(); // capture student ID
@@ -12,12 +14,12 @@ const StudentProfile: React.FC = () => {
     "Assigned Exercises 4",
   ];
 
-  const previousScores = [
+  const [previousScores, setPreviousScores] = useState<Score[]>([
     { task: "Assigned Exercises 1", score: 80 },
     { task: "Assigned Exercises 2", score: 55 },
     { task: "Assigned Exercises 3", score: 97 },
     { task: "Assigned Exercises 4", score: 70 },
-  ];
+  ]);
 
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
 
@@ -46,6 +48,32 @@ Yay! If you get it right, you win a cheer! 🎉 If not, try again—you’re get
       content: "Custom instructions for Suggested Exercise 4.",
     },
   ];
+
+  // 🔹 Fetch latest RAN test accuracy
+  useEffect(() => {
+    async function fetchLatestScore() {
+      try {
+        const res = await fetch(`/api/ran/latest/${id}`);
+        const data = await res.json();
+
+        if (data?.score !== undefined) {
+          const newScore: Score = {
+            task: "Latest RAN Test",
+            score: Math.round(data.score * 100), // accuracy 0–1 → %
+          };
+
+          // Put latest score on top, drop last one
+          setPreviousScores((prev) => [newScore, ...prev.slice(0, 3)]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch latest score:", err);
+      }
+    }
+
+    if (id) {
+      fetchLatestScore();
+    }
+  }, [id]);
 
   return (
     <div className="flex min-h-screen bg-gray-100">
