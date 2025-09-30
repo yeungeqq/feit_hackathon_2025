@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: authentication logic
-    navigate("/homepage"); // redirect after login
+
+    // 🔹 Dummy login check
+    if (email === "teacher@test.com" && password === "1234") {
+      navigate("/homepage");
+    } else if (email === "student@test.com" && password === "1234") {
+      navigate("/student-dashboard");
+    } else {
+      setError("Invalid credentials. Try again.");
+    }
   };
 
   return (
@@ -21,29 +31,40 @@ const LoginPage: React.FC = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* email and password inputs */}
+          {/* Email input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email Address
             </label>
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-900"
             />
           </div>
 
+          {/* Password input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               className="w-full rounded-md border border-gray-300 bg-gray-50 px-4 py-3 text-sm text-gray-900"
             />
           </div>
 
+          {/* Error message */}
+          {error && (
+            <p className="text-sm text-red-500 text-center">{error}</p>
+          )}
+
+          {/* Submit button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition"
