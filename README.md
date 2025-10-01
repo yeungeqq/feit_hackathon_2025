@@ -1,85 +1,52 @@
-# React + TypeScript + Vite
+# AdaptEd – Early Detection for Learning Disability
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project provides a web platform for **teachers** and **students** to run and manage educational tests, including the **Rapid Automatized Naming (RAN) Test**, handwriting recognition (future), behavioral questionnaire (future), and result reporting.
 
-Currently, two official plugins are available:
+## 🔑 Login Credentials
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Teacher account**
 
-## React Compiler
+  - Email: `teacher@test.com`
+  - Password: `1234`
+  - Redirects to: `/homepage`
+- **Student account**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  - Email: `sarah.d@gmail.com`
+  - Password: `1234`
+  - Redirects to: `/student-dashboard`
 
-## APIs Used
+Any other credentials will return an *Invalid credentials* error.
 
-This project integrates the following APIs to support audio features:
+## 🚀 Features
 
-1. **Speech-to-Text (STT)** – [AssemblyAI](https://www.assemblyai.com/)  
-   - Used to transcribe student audio during tests (e.g., RAN Test).  
-   - Audio is recorded via the browser (`MediaRecorder`) and then sent to the backend, which communicates with AssemblyAI for transcription and scoring.  
+- Teacher dashboard to conduct actual tests and assign tasks for students.
+- Student dashboard to complete assigned tasks, games, and exercises.
+- **RAN Test** with:
+  - Fixed grid of colors.
+  - Voice recording via microphone.
+  - Backend transcription with **AssemblyAI API**.
+  - Automatic scoring: accuracy, errors, speed (items/minute).
+- Storage of scores for student profiles, with the latest results displayed dynamically.
 
-2. **Text-to-Speech (TTS)** – `SpeechSynthesisUtterance` (Web Speech API)  
-   - A native browser API used to generate spoken sounds for exercises (e.g., reading letter sounds in Sound Hunt).  
-   - Ensures interactive feedback without needing an external TTS service.  
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- Vite
+- TailwindCSS (UI styling)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Backend
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js + Express
+- Multer (file uploads)
+- AssemblyAI (speech-to-text API)
+- TypeScript
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### AI/ML Usage
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **RAN Test**: Speech-to-text (AssemblyAI) + scoring alignment.
+- **Potential Extensions**:
+  - Handwriting recognition (CNN, OCR models).
+  - Behavioral questionnaires (NLP for free text).
+  - Automated report generation (LLMs).
